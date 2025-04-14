@@ -1,8 +1,13 @@
 {
-  "android": {
-    "package": "com.ivanleopoldoc.instantdbdemo"
-  },
-  "ios": {
-    "bundleIdentifier": "com.ivanleopoldoc.instantdbdemo"
+  "expo": {
+    "slug": "instantdbdemo",
+    "name": "instantdbdemo",
+    "scheme": "instantdbdemo",
+    "android": {
+      "package": "com.ivanleopoldoc.instantdbdemo"
+    },
+    "ios": {
+      "bundleIdentifier": "com.ivanleopoldoc.instantdbdemo"
+    }
   }
 }
