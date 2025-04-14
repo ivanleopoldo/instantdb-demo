@@ -8,6 +8,7 @@ export default function CreateNote() {
     <View>
       <Stack.Screen
         options={{
+          headerTitle: 'Create Note',
           headerLeft: () => <Button title="Back" onPress={() => router.dismissTo('/')} />,
           headerRight: () => <Button title="Save" onPress={handleSave} />,
         }}
