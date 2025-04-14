@@ -4,7 +4,7 @@ import { Pressable } from 'react-native-gesture-handler';
 
 export default function LastItem() {
   return (
-    <View className="items-center p-4">
+    <View className="items-center border-t border-neutral-300 p-4">
       <Pressable onPress={() => router.push('/create')}>
         <Text className="text-neutral-500">ADD ITEM</Text>
       </Pressable>
