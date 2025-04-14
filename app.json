@@ -8,6 +8,11 @@
     },
     "ios": {
       "bundleIdentifier": "com.ivanleopoldoc.instantdbdemo"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "65c9592a-7cdc-48c0-89f1-15f40efb5559"
+      }
     }
   }
 }

@@ -3,14 +3,24 @@ import { Stack, router } from 'expo-router';
 import React from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import { Pressable } from 'react-native-gesture-handler';
-import { id } from '@instantdb/react-native';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function CreateNote() {
-  const [title, setTitle] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { data, isLoading } = db.useQuery({ notes: { $: { where: { id: id }, limit: 1 } } });
+  const [title, setTitle] = React.useState(data?.notes[0].title);
+  const [description, setDescription] = React.useState(data?.notes[0].description);
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   const handleSave = () => {
-    db.transact(db.tx.notes[id()].update({ title, description }));
+    db.transact(db.tx.notes[id].update({ title, description }));
     if (router.canDismiss()) {
       router.dismiss();
     }
@@ -20,7 +30,7 @@ export default function CreateNote() {
     <View className="gap-6 p-4">
       <Stack.Screen
         options={{
-          headerTitle: 'Create Note',
+          headerTitle: 'Update Note',
           headerLeft: () => <Button title="Back" onPress={() => router.dismissTo('/')} />,
           headerRight: () => <Button title="Save" onPress={handleSave} />,
         }}
@@ -47,7 +57,7 @@ export default function CreateNote() {
       </View>
       <Pressable onPress={handleSave}>
         <View className="items-center rounded-lg bg-green-600 px-4 py-2">
-          <Text className="text-white">Submit</Text>
+          <Text className="text-white">Update</Text>
         </View>
       </Pressable>
     </View>
